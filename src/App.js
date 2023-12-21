@@ -1,23 +1,67 @@
 import logo from './logo.svg';
 import './App.css';
+import createPost from './api/URLMappingClient';
+import { useState } from 'react';
 
 function App() {
+  const [url, updateUrl] = useState('');
+  const [newUrl, updateNewUrl] = useState('');
+
+  const urlChangeHandler = (event) => {
+    console.log(event.target.value);
+    updateUrl(event.target.value);
+  };
+
+  function onSubmitHandler(event) {
+    event.preventDefault();
+    createPost(url, newUrlChangeHandler);
+  }
+
+  function newUrlChangeHandler(newUrl) {
+    console.log(newUrl);
+    updateNewUrl(newUrl);
+  }
+
+  function resetForm() {
+    updateUrl('');
+    updateNewUrl('');
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="formWrapper">
+        <form className="mainForm" onSubmit={onSubmitHandler}>
+          <input
+            placeholder="Enter URL"
+            type="text"
+            name="url"
+            value={url}
+            onChange={(e) => urlChangeHandler(e)}
+          />
+          <div className="buttonDiv">
+            <button disabled={newUrl.length > 0 ? true : false} type="submit">
+              Generate
+            </button>
+            <button onClick={resetForm}>Reset</button>
+          </div>
+        </form>
+        <div className="urlWrapper">
+          <p>
+            {newUrl.length > 0 ? (
+              <>
+                <input type="text" name="newUrl" value={newUrl} />
+                <div className="buttonDiv">
+                  <button onClick={() => navigator.clipboard.writeText(newUrl)}>
+                    Copy
+                  </button>
+                </div>
+              </>
+            ) : (
+              ''
+            )}
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
