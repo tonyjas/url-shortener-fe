@@ -14,6 +14,9 @@ function App() {
 
   function onSubmitHandler(event) {
     event.preventDefault();
+    if (url.length === 0) {
+      return;
+    }
     createPost(url, newUrlChangeHandler);
   }
 
@@ -46,20 +49,18 @@ function App() {
           </div>
         </form>
         <div className="urlWrapper">
-          <p>
-            {newUrl.length > 0 ? (
-              <>
-                <input type="text" name="newUrl" value={newUrl} />
-                <div className="buttonDiv">
-                  <button onClick={() => navigator.clipboard.writeText(newUrl)}>
-                    Copy
-                  </button>
-                </div>
-              </>
-            ) : (
-              ''
-            )}
-          </p>
+          {newUrl.length > 0 ? (
+            <>
+              <input type="text" name="newUrl" value={newUrl} readOnly />
+              <div className="buttonDiv">
+                <button onClick={() => navigator.clipboard.writeText(newUrl)}>
+                  Copy
+                </button>
+              </div>
+            </>
+          ) : (
+            ''
+          )}
         </div>
       </div>
     </div>
