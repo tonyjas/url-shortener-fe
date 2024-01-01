@@ -25,7 +25,7 @@ function createPost(url, updateNewUrl) {
     .then((response) => {
       // Handle the response data
       console.log(response.data);
-      updateNewUrl(rootURL + response.data.shortUrl);
+      updateNewUrl(rootURL + response.data.urlHash);
     })
     .catch((error) => {
       // Handle any errors
