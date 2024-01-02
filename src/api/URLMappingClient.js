@@ -11,7 +11,7 @@ const apiClient = axios.create({
 // Define the endpoint URL
 const endpointURL = '/api/v1/mapping';
 
-function createPost(url, updateNewUrl) {
+function createPost(url, updateNewUrl, apiErrorHandler) {
   var config = {
     headers: {
       'Content-Type': 'text/plain',
@@ -30,6 +30,7 @@ function createPost(url, updateNewUrl) {
     .catch((error) => {
       // Handle any errors
       console.error(error);
+      apiErrorHandler(error);
     });
 }
 

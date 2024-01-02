@@ -17,7 +17,11 @@ function App() {
     if (url.length === 0) {
       return;
     }
-    createPost(url, newUrlChangeHandler);
+    createPost(url, newUrlChangeHandler, apiErrorHandler);
+  }
+
+  function apiErrorHandler(error) {
+    alert(error);
   }
 
   function newUrlChangeHandler(newUrl) {
