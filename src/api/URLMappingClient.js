@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Define the base URL of the API
 const rootURL = 'http://127.0.0.1:8081/';
-const baseURL = rootURL + 'URLMappingAPI-1.0-SNAPSHOT';
+const baseURL = rootURL + 'urlmap';
 
 const apiClient = axios.create({
   baseURL,
