@@ -8,7 +8,7 @@ function App() {
   const [newUrl, updateNewUrl] = useState('');
 
   const urlChangeHandler = (event) => {
-    console.log(event.target.value);
+    //console.log(event.target.value);
     updateUrl(event.target.value);
   };
 
@@ -21,7 +21,7 @@ function App() {
   }
 
   function newUrlChangeHandler(newUrl) {
-    console.log(newUrl);
+    //console.log(newUrl);
     updateNewUrl(newUrl);
   }
 
